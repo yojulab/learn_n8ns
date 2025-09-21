@@ -22,7 +22,7 @@ WORKDIR /apps/${APP_DIR_NAME}/app
 # RUN pip install --no-cache-dir -r ./requirements.txt
 RUN pip install --no-cache-dir -r ./requirements.txt
 
-RUN rm -rf .git
+# RUN rm -rf .git
 
 # FastAPI 실행 (컨테이너 실행 시)
 WORKDIR /apps/${APP_DIR_NAME}
