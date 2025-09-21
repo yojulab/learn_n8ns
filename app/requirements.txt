@@ -1,0 +1,9 @@
+# data analysis
+pymongo
+# fastapi
+fastapi
+pydantic
+uvicorn
+jinja2
+python-multipart
+pydantic-settings

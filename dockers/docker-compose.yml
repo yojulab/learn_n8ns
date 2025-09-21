@@ -1,0 +1,36 @@
+services:
+  app_fastapi:
+    build:
+      context: .
+      args:
+        GIT_BRANCH_NAME: ${GIT_BRANCH_NAME}
+        APP_DIR_NAME: ${APP_DIR_NAME}      
+        GIT_URI: ${GIT_URI}      
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+  db_mongodb:
+    image: mongo:8
+    ports:
+      - 27017:27017
+    environment:
+      - TZ=Asia/Seoul
+    command: mongod --bind_ip 0.0.0.0     
+
+  app_n8n:
+    image: n8nio/n8n:latest
+    # restart: always
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=Asia/Seoul
+      - DB_TYPE=sqlite # 또는 Postgres, MySQL 가능 (여기서는 sqlite로 단순히)
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER=admin
+      - N8N_BASIC_AUTH_PASSWORD=admin
+      - N8N_USER_FOLDER=/apps/learn_n8ns/n8n_data
+      - N8N_HOST=localhost    
+    depends_on:
+      - fastapi
+      - mongo     
