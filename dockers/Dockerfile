@@ -1,9 +1,9 @@
 # Dockerfile (FastAPI)
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 # 시스템 의존성 설치
 RUN apt-get update && apt-get upgrade -y && apt-get install -y \
-    build-essential \
+    build-essential curl git nano wget \
     && rm -rf /var/lib/apt/lists/*
 
 # 작업 디렉토리 설정
