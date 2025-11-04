@@ -1,0 +1,46 @@
+FROM python:3.12-slim
+
+WORKDIR /app
+
+# 시스템 패키지 업데이트 및 필수 도구 설치
+RUN apt-get update && apt-get install -y \
+    curl \
+    wget \
+    git \
+    gcc \
+    g++ \
+    libpq-dev \
+    postgresql-client \
+    nodejs \
+    npm \
+    && rm -rf /var/lib/apt/lists/*
+
+# Python 패키지 설치
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir \
+    fastapi \
+    uvicorn[standard] \
+    sqlalchemy \
+    psycopg2-binary \
+    pgvector \
+    python-dotenv \
+    pydantic \
+    pydantic-settings \
+    email-validator
+
+# Claude Code 설치 (실패해도 계속 진행)
+RUN npm install -g @anthropic-ai/claude-code 2>/dev/null || echo "Claude Code installation skipped"
+
+# Gemini CLI 설치
+RUN pip install --no-cache-dir google-generativeai
+
+# 필요한 디렉토리 생성 (나중에 수동으로 파일 복사)
+RUN mkdir -p /app/app && \
+    mkdir -p /scripts && \
+    chmod 755 /scripts
+
+# # 포트 노출
+# EXPOSE 8000
+
+# # 실행 명령
+# CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
