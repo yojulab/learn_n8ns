@@ -42,6 +42,7 @@ services:
     container_name: fastapi_app
     ports:
       - "8000:8000"
+      - "5500:5500"
     environment:
       - DATABASE_URL=postgresql://admin:admin123@db_postgresql:5432/main_db
       - TZ=Asia/Seoul

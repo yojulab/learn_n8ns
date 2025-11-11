@@ -1,6 +1,6 @@
 FROM python:3.12-slim
 
-WORKDIR /app
+WORKDIR /apps
 
 # 시스템 패키지 업데이트 및 필수 도구 설치
 RUN apt-get update && apt-get install -y \
@@ -35,9 +35,6 @@ RUN npm install -g @anthropic-ai/claude-code 2>/dev/null || echo "Claude Code in
 RUN pip install --no-cache-dir google-generativeai
 
 # 필요한 디렉토리 생성 (나중에 수동으로 파일 복사)
-RUN mkdir -p /app/app && \
-    mkdir -p /scripts && \
-    chmod 755 /scripts
 
 # # 포트 노출
 # EXPOSE 8000
