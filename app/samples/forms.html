@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>n8n GET 예제</title>
+</head>
+<body>
+  <h3>n8n GET Form 예제</h3>
+
+  <form action="http://localhost:5678/webhook/abe0859b-332f-40d9-b544-5ec6f497bf39" method="get">
+    <label>
+      이름:
+      <input type="text" name="name" value="홍길동" />
+    </label><br><br>
+
+    <label>
+      이메일:
+      <input type="email" name="email" value="test@example.com" />
+    </label><br><br>
+
+    <label>
+      메시지:
+      <input type="text" name="message" value="안녕하세요" />
+    </label><br><br>
+
+    <button type="submit">전송</button>
+  </form>
+</body>
+</html>
