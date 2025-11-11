@@ -32,7 +32,7 @@ services:
       - N8N_BASIC_AUTH_USER=admin
       - N8N_BASIC_AUTH_PASSWORD=admin
       # - N8N_USER_FOLDER=/apps/learn_n8ns
-      - N8N_HOST=localhost
+      - N8N_HOST=0.0.0.0
       
   # FastAPI application
   app_fastapi:
