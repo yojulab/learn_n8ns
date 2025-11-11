@@ -14,17 +14,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Python 패키지 설치
-RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir \
-    fastapi \
-    uvicorn[standard] \
-    sqlalchemy \
-    psycopg2-binary \
-    pgvector \
-    python-dotenv \
-    pydantic \
-    pydantic-settings \
-    email-validator
+RUN pip install --no-cache-dir --upgrade pip 
 
 # Claude Code 설치 (실패해도 계속 진행)
 RUN npm install -g @anthropic-ai/claude-code 2>/dev/null || echo "Claude Code installation skipped"
