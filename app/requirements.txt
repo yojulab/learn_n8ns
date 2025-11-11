@@ -1,9 +1,16 @@
 # data analysis
 pymongo
+
 # fastapi
 fastapi
-pydantic
 uvicorn
+uvicorn[standard]
+sqlalchemy
+psycopg2-binary
+pgvector
+python-dotenv
+pydantic
+pydantic-settings
 jinja2
 python-multipart
-pydantic-settings
+email-validator
