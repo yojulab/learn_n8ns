@@ -33,10 +33,9 @@ services:
       # - N8N_USER_FOLDER=/apps/learn_n8ns
       - N8N_HOST=0.0.0.0
       # Webhook Production URL 설정
-      - WEBHOOK_URL=http://localhost:5678/
-      # 또는 도메인이 있다면: - WEBHOOK_URL=https://yourdomain.com/
-      # Editor Base URL (선택사항이지만 권장)
-      - N8N_EDITOR_BASE_URL=http://localhost:5678/      
+      # 🔥 여기를 변경!
+      - WEBHOOK_URL=https://n8n.cocolabhub.store/
+      - N8N_EDITOR_BASE_URL=https://n8n.cocolabhub.store/
       
   # FastAPI application
   app_fastapi:
