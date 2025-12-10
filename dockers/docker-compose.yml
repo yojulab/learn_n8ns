@@ -37,6 +37,7 @@ services:
       # 또는 도메인이 있다면: - WEBHOOK_URL=https://yourdomain.com/
       # Editor Base URL (선택사항이지만 권장)
       - N8N_EDITOR_BASE_URL=http://localhost:5678/      
+      # 또는 도메인이 있다면: - N8N_EDITOR_BASE_URL=https://yourdomain.com/
       
   # FastAPI application
   app_fastapi:
