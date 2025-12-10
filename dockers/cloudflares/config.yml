@@ -1,0 +1,9 @@
+tunnel: cea4ff77-a387-4d81-8e71-701352d1da64
+credentials-file: C:\Users\PC\.cloudflared\cea4ff77-a387-4d81-8e71-701352d1da64.json
+
+ingress:
+  - hostname: n8n.cocolabhub.store
+    service: http://localhost:5678
+  - hostname: api.cocolabhub.store
+    service: http://localhost:8000
+  - service: http_status:404
