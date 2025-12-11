@@ -23,9 +23,6 @@ cloudflared --version
 ## 2. Cloudflare Tunnel 생성
 
 ```powershell
-# 사용자 디렉토리로 이동
-cd C:\Users\PC
-
 # Cloudflare 로그인 (브라우저 열림)
 cloudflared login
 # 결과: C:\Users\PC\.cloudflared\cert.pem
@@ -41,7 +38,37 @@ cloudflared tunnel route dns test-docker-tunnel api.cocolabhub.store
 
 ---
 
-## 3. Docker Compose 수정
+## 3. Tunnel 설정 파일 생성
+
+**C:\Users\PC\\.cloudflared\config.yml** 파일 생성:
+
+```yaml
+# YOUR_TUNNEL_ID를 실제 ID로 교체
+tunnel: YOUR_TUNNEL_ID
+credentials-file: C:\Users\PC\.cloudflared\YOUR_TUNNEL_ID.json
+
+ingress:
+  - hostname: n8n.cocolabhub.store
+    service: http://localhost:5678
+  
+  - hostname: api.cocolabhub.store
+    service: http://localhost:8000
+  
+  - service: http_status:404
+```
+
+---
+
+## 4. 서비스 실행
+
+```powershell
+# Cloudflare Tunnel 실행 (새 PowerShell 창)
+cloudflared tunnel run test-docker-tunnel
+```
+
+---
+
+## 5. Docker Compose 수정
 download [https://github.com/yojulab/learn_n8ns](https://codeindocker.com/comodules/read/68cff64c01ef0775c26a0b44) files
 
 **docker-compose.yml** - n8n 환경변수만 수정:
@@ -68,39 +95,11 @@ download [https://github.com/yojulab/learn_n8ns](https://codeindocker.com/comodu
     restart: unless-stopped
 ```
 
----
-
-## 4. Tunnel 설정 파일 생성
-
-**C:\Users\PC\\.cloudflared\config.yml** 파일 생성:
-
-```yaml
-# YOUR_TUNNEL_ID를 실제 ID로 교체
-tunnel: YOUR_TUNNEL_ID
-credentials-file: C:\Users\PC\.cloudflared\YOUR_TUNNEL_ID.json
-
-ingress:
-  - hostname: n8n.cocolabhub.store
-    service: http://localhost:5678
-  
-  - hostname: api.cocolabhub.store
-    service: http://localhost:8000
-  
-  - service: http_status:404
-```
-
----
-
-## 5. 서비스 실행
-
-```powershell
-# Docker 컨테이너 시작
+** Docker 컨테이너 시작 **
 cd C:\your\project\directory
 docker-compose up -d
 
-# Cloudflare Tunnel 실행 (새 PowerShell 창)
-cloudflared tunnel run test-docker-tunnel
-```
+---
 
 ### 백그라운드 실행 (선택사항):
 
@@ -115,7 +114,7 @@ cloudflared service start
 ## 6. 접속 확인
 
 - **n8n**: https://n8n.cocolabhub.store
-- **FastAPI**: https://api.cocolabhub.store/docs
+- **FastAPI**: https://api.cocolabhub.store
 
 ---
 
